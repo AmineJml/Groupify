@@ -1,0 +1,107 @@
+•	Users shall be able to login and register
+•	Users shall be able to create groups and add to them
+•	Users shall be able to post images with descriptions to the grops that they joined.
+•	Browse all - no interactions
+•	Users shall be able to like and comment on posts for their joined groups
+•	Users shall be able to delete their posted images 
+•	Users shall be able to edit their profiles 
+
+A post will consist of:
+	- Image
+	- title
+	- description
+	- comments 
+	- Likes
+
+Groups:
+	- Users
+	- chat room
+	- Group view
+	- Can access them from the search bar
+	- Brief description
+Login register, post, update details will be added later
+No blocks, no editing your profile, the only that can be changed is your password - for future reasons
+A user can delete their post
+Once a group is created it can not be removed
+
+Tables:
+users:
+- user_id
+- username
+- fName
+- lName
+- password
+
+Groups:
+- group_id
+- group_name
+- group_description
+- users_count (can be added)
+
+pivot(user joined groups):
+- user_id
+- group_id
+- is_joined
+
+posts:
+- post_id
+- user_id
+- group_id
+- post_title
+- post_description
+- post_URL
+- is_deleted
+
+comments:
+- post_id
+- user_id
+- comment
+
+likes:
+- post_id
+- user_id
+- is_liked
+
+Views:
+*- navbar with search
+*- groups can be only accessed through search bar
+
+1- Login
+2- Register
+3- Browse all
+	- display all posts from all groups
+	- not allowed to interact with posts, just see the title + images + group name + likes
+4- browse by groups:
+	- display all posts to each the user joined
+	- opens after login - if 0 groups redirect to browse all
+5- Account View:
+	- check all my posts through all groups
+	- can delete the posts from there
+6- Edit Profile
+7- Add post: 
+	- Upload image
+	- group name
+	- title + description
+8- Group View:
+	- Title 
+	- Description of the group + all posts to this group
+	- join button
+9- post view:
+	- Title + description + comments + add comment + like
+
+10- chat room
+
+apis:
+1- login
+2- register
+3- get_all_posts
+4- get_post_group_joined
+5- get_post_user_id ; delete_post_id
+6- edit_profile
+7- add_post
+8- get_post_group
+9- get_post_id
+10- add_like (1 for add, 0 for remove)
+11- add_comment
+12- join_group (1 for add, 0 for remove)
+
