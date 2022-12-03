@@ -13,7 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-
+/*============================Groups============================================================*/
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id("group_id");
+            $table->string("group_name");
+            $table->string("group_description");
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('groups');
     }
 };

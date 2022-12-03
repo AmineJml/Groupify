@@ -13,30 +13,33 @@ use App\Http\Controllers\groupifyController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 /*
 apis:
 1- login    - Username, password
 2- register - fname, lname, username, password
 3- get_all_posts 
-4- get_post_group_joined - user_id
-5- get_post_user_id - user_id
+4- get_posts_group_joined - user_id / browse joined groups
+5- get_post_user_id - user_id / browse account view
 6- edit_profile - user_id
-7- add_post - user_id 
-8- get_post_group (from the front end we take what we want)
-9- get_post_id (from the front end we take what we want)
-10- add_like (1 for add, 0 for remove)
-11- add_comment
-12- join_group (1 for add, 0 for remove)
-13- delete_post_id 
+7- add_post - group_id, user_id, post_title, post_description, post_URL
+8- get_post_group group_id (from the front end we take what we want)/ browse group View
+9- get_post_id post_id (from the front end we take what we want) - For getting a single post
+10- add_like post_id (1 for add, 0 for remove)
+11- add_comment post_id
+12- join_group group_id, user_id(1 for add, 0 for remove)
+13- delete_post_id  post_id, user_id
 */
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get("/test", [groupifyController::class, "test"]);
+Route::get("test/{id?}", [groupifyController::class, "test"]);
+Route::post("testUpdate", [groupifyController::class, "testUpdate"]);
 
-Route::get("/test", [groupifyController::class, "test"]);
 
-Route::group(["prefix" => "products"], function(){
+
+
+Route::group(["test" => "products"], function(){
     Route::get("test", [groupifyController::class, "test"]);
 
 });

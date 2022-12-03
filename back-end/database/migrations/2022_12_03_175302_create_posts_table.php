@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-/*============================posts=========================================================================*/
-        Schema::create('comments', function (Blueprint $table) {
+/*============================Posts======================================================================*/
+        Schema::create('posts', function (Blueprint $table) {
             $table->id("post_id");
             $table->integer("group_id");
             $table->integer("user_id");
-            $table->string("post_title"); //how to decide the size of the string from laravel
+            $table->string("post_title"); 
             $table->string("post_description"); 
             $table->string("post_URL"); 
-            $table->integer("is_deleted");
-
+            $table->integer("is_deleted");  //how to decide the size of the string from laravel
         });
+
     }
 
     /**
