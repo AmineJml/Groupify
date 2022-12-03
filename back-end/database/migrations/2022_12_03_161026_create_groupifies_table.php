@@ -35,18 +35,29 @@ return new class extends Migration
             $table->integer("group_id");
             $table->integer("is_joined");
         });
-/*============================likes============================================================*/
+/*============================likes========================================================================*/
         Schema::create('likes', function (Blueprint $table) {
             $table->integer("user_id");
             $table->integer("post_id");
             $table->integer("is_liked");
         });
-/*============================comments============================================================*/
+/*============================comments======================================================================*/
         Schema::create('comments', function (Blueprint $table) {
             $table->id("comment_id");
             $table->integer("post_id");
             $table->integer("user_id");
             $table->string("comment"); //how to decide the size of the string from laravel
+        });
+/*============================posts=========================================================================*/
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id("post_id");
+            $table->integer("group_id");
+            $table->integer("user_id");
+            $table->string("post_title"); //how to decide the size of the string from laravel
+            $table->string("post_description"); 
+            $table->string("post_URL"); 
+            $table->integer("is_deleted");
+
         });
     }
 

@@ -10,7 +10,12 @@ class groupifyController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
+
+    function test(){
+        return "HELLO WORLD";
+    }
+
     public function index()
     {
         //
