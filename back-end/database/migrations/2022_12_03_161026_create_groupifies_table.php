@@ -48,17 +48,7 @@ return new class extends Migration
             $table->integer("user_id");
             $table->string("comment"); //how to decide the size of the string from laravel
         });
-/*============================posts=========================================================================*/
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id("post_id");
-            $table->integer("group_id");
-            $table->integer("user_id");
-            $table->string("post_title"); //how to decide the size of the string from laravel
-            $table->string("post_description"); 
-            $table->string("post_URL"); 
-            $table->integer("is_deleted");
 
-        });
     }
 
     /**
