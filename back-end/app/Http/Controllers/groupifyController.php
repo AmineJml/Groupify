@@ -29,13 +29,19 @@ class groupifyController extends Controller
         $comment->post_id = $request->post_id;
         $comment->user_id = $request->user_id;
         $comment->comment = $request->comment;
-
+        //fillRequest($post_id, $user_id, $comment, $value, $request);
         if($comment->save()){
             return response()->json([
                 "result" => true 
             ]);
         }     
     }
+    
+    // public function fillRequest($input1, $input2, $input3, $value, $request){
+    //     $value->input1 = $request->input1;
+    //     $value->input2 = $request->input2;
+    //     $value->input3 = $request->input3;
+    // }
     //###########################_UPDATE_##############################
     function testUpdate(Request $request)
     {
@@ -49,13 +55,14 @@ class groupifyController extends Controller
             'user_id' => 'required',
             'comment' => 'required',
         ]);
-        //validator infinite loop
+        return response()->json([
+            "result" => "YAY" 
+        ]); 
         if($validator->fails()) {
             return response()->json([
                 "result" => "false" 
             ]); 
         }
-
         $comment = Comment::where('post_id', 1)
                           ->where('user_id', 1)
                           ->update(['comment'=> "TESTING UPDATE", 'user_id' => 2]);

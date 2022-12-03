@@ -33,13 +33,12 @@ apis:
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get("test/{id?}", [groupifyController::class, "test"]);
-Route::post("testUpdate", [groupifyController::class, "testUpdate"]);
 
 
+Route::group(["prefix" => "test"], function(){
+    Route::get("get/{id}", [groupifyController::class, "testGet"]);
+    Route::post("insert", [groupifyController::class, "testInsert"]);
+    Route::post("update", [groupifyController::class, "testUpdate"]);
 
-
-Route::group(["test" => "products"], function(){
-    Route::get("test", [groupifyController::class, "test"]);
 
 });
