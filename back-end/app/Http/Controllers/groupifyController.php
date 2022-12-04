@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
@@ -14,6 +14,13 @@ use App\Models\Comment;
 
 class groupifyController extends Controller
 {
+    function test(){
+
+        return response() -> json([
+            "result" => "HELOOOOO"
+        ]);
+    }
+
     //###########################_GET_##############################
     function testGet($id){
         $comment = Comment::select('comment')

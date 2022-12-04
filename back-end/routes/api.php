@@ -2,7 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\groupifyController;
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+
+});
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,13 +42,13 @@ apis:
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get("test/{id?}", [groupifyController::class, "test"]);
-Route::post("testUpdate", [groupifyController::class, "testUpdate"]);
+
+Route::get("test", [groupifyController::class, "test"]);
 
 
-
-
-Route::group(["test" => "products"], function(){
-    Route::get("test", [groupifyController::class, "test"]);
+Route::group(["prefix" => "test"], function(){
+    Route::get("get", [groupifyController::class, "testGet"]);
+    Route::post("update", [groupifyController::class, "testUpdate"]);
+    Route::post("insert", [groupifyController::class, "testInsert"]);
 
 });
