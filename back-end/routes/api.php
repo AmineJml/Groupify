@@ -10,8 +10,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+    Route::get('testAuth', 'testAuth');
+
 
 });
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,14 +42,11 @@ apis:
 12- join_group group_id, user_id(1 for add, 0 for remove)
 13- delete_post_id  post_id, user_id
 */
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get("test", [groupifyController::class, "test"]);
 
 
-Route::group(["prefix" => "test"], function(){
+Route::group(["middleware" => "auth:api"], function(){
     Route::get("get", [groupifyController::class, "testGet"]);
     Route::post("update", [groupifyController::class, "testUpdate"]);
     Route::post("insert", [groupifyController::class, "testInsert"]);
