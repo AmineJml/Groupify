@@ -7,18 +7,31 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
 
+/*
+apis:
+1- login - completed in auth
+2- register - completed in auth
+13- logout - completed in auth
+--------------get-------------------
+3- get_all_posts
+4- get_post_group_joined
+5- get_post_user_id ; delete_post_id
+8- get_post_group
+9- get_post_id
+------------------------------------
+---------------update---------------
+6- edit_profile
+10- add_like (1 for add, 0 for remove)
+12- join_group (1 for add, 0 for remove)
 
+---------------insert---------------
+7- add_post
+11- add_comment
+*/ 
 
 
 class groupifyController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
-
-
-
     //###########################_GET_##############################
     function testGet($id){
         $comment = Comment::select('comment')

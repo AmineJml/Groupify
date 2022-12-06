@@ -14,12 +14,6 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
-    public function testAuth(){
-        return response() -> json([
-            "result" => "HELOOOOO"
-        ]);
-    }
-
     public function login(Request $request)
     {
         $request->validate([
