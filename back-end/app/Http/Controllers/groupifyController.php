@@ -81,4 +81,30 @@ class groupifyController extends Controller
             "result" => "YAY" 
         ]);    
     }
+    /*
+    ======================================================================================
+                                GET - APIS
+    ======================================================================================  
+    */ 
+    function getAllPosts(){ //takes nothing return all informations about a post may be displayed to all users (even guests)
+        $post = Post::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
+                          ->where('is_deleted', '=', 0)
+                          ->get();
+        return response() -> json([
+            "result" => $post
+        ]);
+    }
+
+    function get_post_group_joined($user_id){ //takes user_id return all posts for user joined groups
+        //create an array that holds all groups ids
+        //then select the posts with these specific grpupid
+        $groups = Group::select
+
+        $post = Comment::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
+                          ->where('is_deleted', '=', 0)
+                          ->get();
+        return response() -> json([
+            "result" => $post
+        ]);
+    }
  }
