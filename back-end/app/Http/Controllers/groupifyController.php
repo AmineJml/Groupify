@@ -136,8 +136,8 @@ class groupifyController extends Controller
     12- join_group (1 for add, 0 for remove)
     13- delete_post_id
     ---------------insert---------------
-    7- add_post
-    11- add_comment
+    7- add_post 0 variables - Completed with testing
+    11- add_comment 0 variables - Completed with testing
     */
 
     function add_post(Request $request)
@@ -167,6 +167,32 @@ class groupifyController extends Controller
                 "result" => "true" 
             ]);
         } 
+    }
+    
+    function add_comment(Request $request)
+    {
+        $comment = new Comment;
+        $comment->post_id = $request->post_id;
+        $comment->user_id = $request->user_id;
+        $comment->comment = $request->comment;
+
+        $validator = Validator::make($request->all(), [
+            'post_id' => 'required',
+            'user_id' => 'required',
+            'comment' => 'required',
+        ]);
+        //validator infinite loop
+        if($validator->fails()) {
+            return response()->json([
+                "result" => "false" 
+            ]); 
+        }
+
+        $comment = Comment::where(['post_id', 1], ['user_id', 1])
+                          ->update(['comment'=> "TESTING UPDATE", 'user_id' => 2]);
+        return response()->json([
+            "result" => "YAY" 
+        ]);    
     }
 
  }
