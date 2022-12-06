@@ -5,6 +5,8 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Group;
+
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\UserJoinedGroup;
@@ -19,7 +21,7 @@ apis:
 --------------get-------------------
 3- get_all_posts
 4- get_post_group_joined
-5- get_post_user_id ; delete_post_id
+5- get_post_user_id 
 8- get_post_group
 9- get_post_id
 ------------------------------------
@@ -27,7 +29,7 @@ apis:
 6- edit_profile
 10- add_like (1 for add, 0 for remove)
 12- join_group (1 for add, 0 for remove)
-
+13- delete_post_id
 ---------------insert---------------
 7- add_post
 11- add_comment
@@ -98,18 +100,41 @@ class groupifyController extends Controller
         ]);
     }
 
+    function get_post_group($group_id){ //takes nothing return all informations about a post may be displayed to all users (even guests)
+        $post = Post::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
+                          ->where('is_deleted', '=', 0)
+                          ->where('group_id', '=', $group_id)
+                          ->get();
+        return response() -> json([
+            "result" => $post
+        ]);
+    }
+
+    function get_post_id($user_id){ //takes nothing return all informations about a post may be displayed to all users (even guests)
+        $post = Post::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
+                          ->where('is_deleted', '=', 0)
+                          ->where('user_id', '=', $user_id)
+                          ->get();
+        return response() -> json([
+            "result" => $post
+        ]);
+    }
+
     function get_post_group_joined($user_id){ //takes user_id return all posts for user joined groups
         //create an array that holds all groups ids
         //then select the posts with these specific grpupid
-        $array = Group::select('group_id')
-                        ->where(['user_id', '=', $user_id], ['is_joined', '=', 1] )
+        $array = UserJoinedGroup::select('group_id')
+                        ->where('user_id', '=', $user_id)
+                        ->where('is_joined', '=', 1 )
                         ->get();
 
-        while($group = $groups->fetch_assoc()){
-            $arr_groups[] = $group; //array of the groups by the user
-        }
+        // while($group = $groups->fetch_assoc()){ im trying to find another sol
+        //     $arr_groups[] = $group; //array of the groups by the user
+        // }
+
+        
         return response() -> json([
-            "result" => $arr_groups
+            "result" => $array
         ]);
                         
         if($blocks){ //if list is not empty
