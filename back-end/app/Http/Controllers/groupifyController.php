@@ -89,7 +89,7 @@ class groupifyController extends Controller
                                 GET - APIS
     ======================================================================================  
     */ 
-    function get_all_posts($group_id){ //takes nothing return all informations about a post may be displayed to all users (even guests)
+    function get_all_posts(){ //takes nothing return all informations about a post may be displayed to all users (even guests)
         $post = Post::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
                           ->where('is_deleted', '=', 0)
                           ->get();
