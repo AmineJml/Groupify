@@ -74,8 +74,7 @@ class groupifyController extends Controller
             ]); 
         }
 
-        $comment = Comment::where('post_id', 1)
-                          ->where('user_id', 1)
+        $comment = Comment::where(['post_id', 1], ['user_id', 1])
                           ->update(['comment'=> "TESTING UPDATE", 'user_id' => 2]);
         return response()->json([
             "result" => "YAY" 
@@ -98,8 +97,27 @@ class groupifyController extends Controller
     function get_post_group_joined($user_id){ //takes user_id return all posts for user joined groups
         //create an array that holds all groups ids
         //then select the posts with these specific grpupid
-        $groups = Group::select
+        $array = Group::select('group_id')
+                        ->where(['user_id', '=', $user_id], ['is_joined', '=', 1] )
+                        ->get();
 
+        while($group = $groups->fetch_assoc()){
+            $arr_groups[] = $group; //array of the groups by the user
+        }
+        return response() -> json([
+            "result" => $arr_groups
+        ]);
+                        
+        if($blocks){ //if list is not empty
+           // (previously blocked user - so we dont set duplicated)
+           //- set_visibility to 1
+           $response[] = $blocks;
+           echo json_encode($response);
+        
+        }
+        return response() -> json([
+            "result" => $groups
+        ]);
         $post = Comment::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
                           ->where('is_deleted', '=', 0)
                           ->get();
