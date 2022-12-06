@@ -136,8 +136,8 @@ class groupifyController extends Controller
     ---------------update---------------
     exceluding register
     6- edit_profile //will come back for later - check with dr. daaoud
-    10- add_like (1 for add, 0 for remove) 
-    12- join_group (1 for add, 0 for remove)
+    10- add_like (1 for add, 0 for remove)  - Completed with testing
+    12- join_group (1 for add, 0 for remove) - Completed with testing
     13- delete_post_id
     ---------------insert---------------
     7- add_post 0 variables - Completed with testing
@@ -173,8 +173,7 @@ class groupifyController extends Controller
         } 
     }
     
-    function add_comment(Request $request)
-    {
+    function add_comment(Request $request){
         $comment = new Comment;
         $comment->post_id = $request->post_id;
         $comment->user_id = $request->user_id;
@@ -298,5 +297,38 @@ class groupifyController extends Controller
             ]);
         } 
     }
+    function delete_post(Request $request){
+        $post = new Post;
+        $post->post_id = $request->post_id;
+
+        $validator = Validator::make($request->all(), [
+            'post_id' => 'required',
+        ]);
+        //validator infinite loop
+        if($validator->fails()) {
+            return response()->json([
+                "result" => "false_auth" 
+            ]); 
+        }
+
+        $check_post = Post::where('post_id',  $post->post_id)
+                    ->where('is_deleted', 0)
+                    ->get();
+
+
+        if($check_post){
+            $post = Post::where('post_id',  $post->post_id)
+                     ->update(['is_deleted'=> 1]);
+            return response()->json([
+                "result" => "true" 
+            ]);    
+        }
+
+        return response()->json([
+            "result" => "false" 
+        ]);    
+
+    }
+
 
  }
