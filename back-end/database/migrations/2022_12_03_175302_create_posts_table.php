@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("post_title"); 
             $table->string("post_description"); 
             $table->string("post_URL"); 
-            $table->integer("is_deleted");  //how to decide the size of the string from laravel
+            $table->integer("is_deleted")->default('0');  //how to decide the size of the string from laravel
         });
 
     }

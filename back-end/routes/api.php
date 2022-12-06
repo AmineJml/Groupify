@@ -50,5 +50,8 @@ Route::group(["middleware" => "auth:api"], function(){
     Route::get("get", [groupifyController::class, "testGet"]);
     Route::post("update", [groupifyController::class, "testUpdate"]);
     Route::post("insert", [groupifyController::class, "testInsert"]);
-
 });
+
+Route::post("editProfile", [groupifyController::class, "edit_profile"]);
+
+Route::post("add_post", [groupifyController::class, "add_post"]);

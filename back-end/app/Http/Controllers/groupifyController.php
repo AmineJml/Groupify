@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
@@ -125,4 +125,48 @@ class groupifyController extends Controller
             "result" => $post
         ]);
     }
+        /*
+    ======================================================================================
+                                INSERT/UPDATE - APIS
+    ======================================================================================  
+    ---------------update---------------
+    exceluding register
+    6- edit_profile //will come back for later
+    10- add_like (1 for add, 0 for remove)
+    12- join_group (1 for add, 0 for remove)
+    13- delete_post_id
+    ---------------insert---------------
+    7- add_post
+    11- add_comment
+    */
+
+    function add_post(Request $request)
+    {
+        $post = new Post;
+        $post->group_id = $request->group_id;
+        $post->user_id = $request->user_id;
+        $post->post_title = $request->post_title;
+        $post->post_description = $request->post_description;
+        $post->post_URL = $request->post_URL;
+
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+            'user_id' => 'required',
+            'post_title' => 'required',
+            'post_description' => 'required',
+            'post_URL' => 'required',
+        ]);
+        //validator infinite loop
+        if($validator->fails()) {
+            return response()->json([
+                "result" => "false" 
+            ]); 
+        }
+        if($post->save()){
+            return response()->json([
+                "result" => "true" 
+            ]);
+        } 
+    }
+
  }
