@@ -58,6 +58,7 @@ Route::post("add_post", [groupifyController::class, "add_post"]);
 Route::post("like_post", [groupifyController::class, "like_post"]);
 Route::post("join_group", [groupifyController::class, "join_group"]);
 Route::post("delete_post", [groupifyController::class, "delete_post"]);
+Route::post("add_comment", [groupifyController::class, "add_comment"]);
 
 Route::get("get_all_posts", [groupifyController::class, "get_all_posts"]);
 Route::get("get_post_group_joined/{user_id}", [groupifyController::class, "get_post_group_joined"]);

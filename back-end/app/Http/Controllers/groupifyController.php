@@ -20,13 +20,13 @@ apis:
 13- logout - completed in auth
 --------------get-------------------
 3- get_all_posts
-4- get_post_group_joined
+4- get_post_group_joined //need help
 5- get_post_user_id 
 8- get_post_group
 9- get_post_id
 ------------------------------------
 ---------------update---------------
-6- edit_profile
+6- edit_profile //need help
 10- add_like (1 for add, 0 for remove)
 12- join_group (1 for add, 0 for remove)
 13- delete_post_id
@@ -216,11 +216,11 @@ class groupifyController extends Controller
             ]); 
         }
 
-        $comment = Comment::where(['post_id', 1], ['user_id', 1])
-                          ->update(['comment'=> "TESTING UPDATE", 'user_id' => 2]);
-        return response()->json([
-            "result" => "YAY" 
-        ]);    
+        if($comment->save()){
+            return response()->json([
+                "result" => "true" 
+            ]);
+        }    
     }
 
     function edit_profile(Request $request)
