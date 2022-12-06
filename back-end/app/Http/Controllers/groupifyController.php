@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Like;
-use App\Models\UserJoinGroup;
+use App\Models\UserJoinedGroup;
 
 
 
@@ -263,7 +263,8 @@ class groupifyController extends Controller
     }
 
     function join_group(Request $request){
-        $UserJoinGroup = new UserJoinGroup;
+
+        $UserJoinGroup = new UserJoinedGroup;
         $UserJoinGroup->group_id = $request->group_id;
         $UserJoinGroup->user_id = $request->user_id;
         $UserJoinGroup->is_joined = $request->is_joined;
@@ -280,11 +281,11 @@ class groupifyController extends Controller
             ]); 
         }
 
-        $check_UserJoinGroup = UserJoinGroup::where('group_id',  $UserJoinGroup->group_id)
+        $check_UserJoinGroup = UserJoinedGroup::where('group_id',  $UserJoinGroup->group_id)
                                             ->where('user_id',  $UserJoinGroup->user_id)
                                             ->get();
-        if($check_UserJoinGroup){
-            $UserJoinGroup = UserJoinGroup::where('group_id',  $UserJoinGroup->group_id)
+        if(!$check_UserJoinGroup){
+            $UserJoinGroup = UserJoinedGroup::where('group_id',  $UserJoinGroup->group_id)
                                           ->where('user_id',  $UserJoinGroup->user_id)
                                           ->update(['is_joined'=>  $UserJoinGroup->is_joined]);
             return response()->json([
