@@ -226,8 +226,7 @@ class groupifyController extends Controller
         ]);    
     }
 
-    function like_post(Request $request)
-    {
+    function like_post(Request $request){
         $like = new Like;
         $like->post_id = $request->post_id;
         $like->user_id = $request->user_id;
@@ -245,11 +244,22 @@ class groupifyController extends Controller
             ]); 
         }
 
-        $like = Like::where(['post_id', 1], ['user_id', 1])
-                          ->update(['is_liked'=> $like->is_liked]);
-        return response()->json([
-            "result" => "true" 
-        ]);    
+        $check_like = Like::where('post_id',  $like->post_id)
+                    ->where('user_id', $like->user_id)
+                    ->get();
+        if($check_like){
+            $like = Like::where('post_id',  $like->post_id)
+            ->where('user_id', $like->user_id)
+            ->update(['is_liked'=> $like->is_liked]);
+            return response()->json([
+                "result" => "like_is_found" 
+            ]);    
+        }
+        if($like->save()){
+            return response()->json([
+                "result" => "true" 
+            ]);
+        } 
     }
 
  }
