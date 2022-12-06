@@ -55,3 +55,4 @@ Route::group(["middleware" => "auth:api"], function(){
 Route::post("editProfile", [groupifyController::class, "edit_profile"]);
 
 Route::post("add_post", [groupifyController::class, "add_post"]);
+Route::post("like_post", [groupifyController::class, "like_post"]);

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Like;
+use App\Models\UserJoinGroup;
+
+
 
 /*
 apis:
@@ -131,8 +135,8 @@ class groupifyController extends Controller
     ======================================================================================  
     ---------------update---------------
     exceluding register
-    6- edit_profile //will come back for later
-    10- add_like (1 for add, 0 for remove)
+    6- edit_profile //will come back for later - check with dr. daaoud
+    10- add_like (1 for add, 0 for remove) 
     12- join_group (1 for add, 0 for remove)
     13- delete_post_id
     ---------------insert---------------
@@ -192,6 +196,59 @@ class groupifyController extends Controller
                           ->update(['comment'=> "TESTING UPDATE", 'user_id' => 2]);
         return response()->json([
             "result" => "YAY" 
+        ]);    
+    }
+
+    function edit_profile(Request $request)
+    {
+        $user = new User;
+        $user->id = $request->id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        //validator infinite loop
+        if($validator->fails()) {
+            return response()->json([
+                "result" => "false" 
+            ]); 
+        }
+
+        $user = User::where(['email', $user->email])
+                          ->update(['name'=> $user->name, 'password' => $request->password]);
+        return response()->json([
+            "result" => "true" 
+        ]);    
+    }
+
+    function like_post(Request $request)
+    {
+        $like = new Like;
+        $like->post_id = $request->post_id;
+        $like->user_id = $request->user_id;
+        $like->is_liked = $request->is_liked;
+
+        $validator = Validator::make($request->all(), [
+            'post_id' => 'required',
+            'user_id' => 'required',
+            'is_liked' => 'required',
+        ]);
+        //validator infinite loop
+        if($validator->fails()) {
+            return response()->json([
+                "result" => "false" 
+            ]); 
+        }
+
+        $like = Like::where(['post_id', 1], ['user_id', 1])
+                          ->update(['is_liked'=> $like->is_liked]);
+        return response()->json([
+            "result" => "true" 
         ]);    
     }
 
