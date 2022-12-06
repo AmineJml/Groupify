@@ -105,3 +105,7 @@ apis:
 11- add_comment
 12- join_group (1 for add, 0 for remove)
 
+ACTIVATE AUTHORIZATION:
+go to headers
+add
+Authorization  -  Bearer token
