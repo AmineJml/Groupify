@@ -66,27 +66,27 @@ Views:
 *- navbar with search
 *- groups can be only accessed through search bar
 
-1- Login
-2- Register
-3- Browse all
+1- Login -form
+2- Register -form
+3- Browse all -page
 	- display all posts from all groups
 	- not allowed to interact with posts, just see the title + images + group name + likes
-4- browse by groups:
+4- browse by groups: -page
 	- display all posts to each the user joined
 	- opens after login - if 0 groups redirect to browse all
-5- Account View:
+5- Account View: -page
 	- check all my posts through all groups
 	- can delete the posts from there
-6- Edit Profile
-7- Add post: 
+6- Edit Profile -form
+7- Add post:  -form
 	- Upload image
 	- group name
 	- title + description
-8- Group View:
+8- Group View: -page (with description in header)
 	- Title 
 	- Description of the group + all posts to this group
 	- join button
-9- post view:
+9- post view: -form
 	- Title + description + comments + add comment + like
 
 10- chat room
