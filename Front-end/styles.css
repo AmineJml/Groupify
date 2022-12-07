@@ -1,6 +1,66 @@
+
+*{
+    box-sizing:border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
 .container{
     display: flex; 
+    justify-content: center;
+    flex-wrap: wrap;
 }
 /*
     element inside the section are side by side
+    justify-content: center; all the content inside this element will go to the center
+
 */
+
+body{
+    background: rgb(157, 176, 225);
+}
+
+.page-title{
+
+}
+.card{
+    background-color: rgba(193, 215, 234, 0.982);
+    width: 270px;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.card-image{
+    height: 150px;
+    margin-bottom: 15px;
+    width: 270px;
+    border-radius: 15px 15px 0 0;
+    background-size: cover;
+
+}
+
+.card-par{
+    padding: 10px;
+    width: 270px;
+    height: 100px;
+}
+
+.card a{
+    margin: 20px 50px;
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px 10px 10px 10px;
+
+
+}
+
+.card a:hover{
+    background-color: rgb(62, 62, 62);
+    color:  white;
+    transform: scale(1.03);
+}
