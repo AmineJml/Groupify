@@ -4,6 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\groupifyController;
+use App\Http\Controllers\commentsController;
+use App\Http\Controllers\groupsController;
+use App\Http\Controllers\likesController;
+use App\Http\Controllers\postsController;
+use App\Http\Controllers\userjpoinedgroupsController;
+
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
