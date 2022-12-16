@@ -218,8 +218,7 @@ groupify_pages.load_block = () => {
     //=====================================
 
 }    
-// block.html
-// addPost
+
 groupify_pages.load_homePage = async () => {
     class images {
         constructor(User_id, Image_URL, Image_id, likes) {
