@@ -66,4 +66,37 @@ class postsController extends Controller
             ]);
         } 
     }
+
+    function delete_post(Request $request){
+        $post = new Post;
+        $post->post_id = $request->post_id;
+
+        $validator = Validator::make($request->all(), [
+            'post_id' => 'required',
+        ]);
+        //validator infinite loop
+        if($validator->fails()) {
+            return response()->json([
+                "result" => "false_auth" 
+            ]); 
+        }
+
+        $check_post = Post::where('post_id',  $post->post_id)
+                    ->where('is_deleted', 0)
+                    ->get();
+
+
+        if($check_post){
+            $post = Post::where('post_id',  $post->post_id)
+                     ->update(['is_deleted'=> 1]);
+            return response()->json([
+                "result" => "true" 
+            ]);    
+        }
+
+        return response()->json([
+            "result" => "false" 
+        ]);    
+
+    }
 }
