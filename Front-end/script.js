@@ -2,7 +2,7 @@ const base_URL = "http://localhost:8000/api/";
 const base_HTML = "http://localhost:5501/Front-end/";
 
 const groupify_pages = {};
- 
+
 
 groupify_pages.loadFor = (page) => {
     eval("workshop_pages.load_" + page + "();");
@@ -211,6 +211,9 @@ groupify_pages.load_homePage = async () => {
 }
 
 groupify_pages.load_register = () => {
+
+
+
     const btn_signup = document.getElementById('btn_signup');
     let input_FName_register = document.getElementById('input_FName_register');
     let input_Username_register = document.getElementById('input_Username_register');

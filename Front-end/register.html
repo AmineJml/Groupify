@@ -3,11 +3,16 @@
 <html>
 
 <head>
-    <link rel="stylesheet" id="theme" href="styles.css">
-
+    <link rel="stylesheet" id="theme-link" href="styles.css">
 </head>
 
 <body>
+    <select name="theme" id="theme" class="theme" onchange="">
+        <option value="1">Light mode</option>
+        <option value="2">Dark mode</option>     
+    </select>
+
+
     <div class="center">
         <h1>Register</h1>
         <form method="post">
@@ -47,5 +52,6 @@
 <script>
     groupify_pages.loadFor("register");
 </script>
+
 
 </html>
