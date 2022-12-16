@@ -1,4 +1,4 @@
-const base_URL = "http://localhost/FullStackProject-Web/Back%20End/";
+const base_URL = "http://localhost:8000/api/";
 const base_HTML = "http://localhost:5501/Front-end/";
 
 const groupify_pages = {};
@@ -22,7 +22,7 @@ groupify_pages.load_login = () => {
         await axios({
             method: "post",
             //url: "http://localhost/FullStackProject-Web/Back%20End/login.php",
-            url:"http://localhost:8000/api/login",
+            url:base_URL + "login",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
           })
