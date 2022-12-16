@@ -22,7 +22,7 @@ groupify_pages.load_login = () => {
         await axios({
             method: "post",
             //url: "http://localhost/FullStackProject-Web/Back%20End/login.php",
-            url:base_URL + "login",
+            url:base_URL +"login",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
           })
@@ -150,41 +150,41 @@ groupify_pages.load_homePage = async () => {
         }
     }
 
-    let list_get_images = {};
+    let list_get_posts = {};
 
 
-    const get_images = async() => {
-            await axios.get(base_URL + "get_images.php").then( response =>{
-            list_get_images =  response.data;
-            console.log(list_get_images)
+    const get_posts = async() => {
+            await axios.get(base_URL + "get_posts.php").then( response =>{
+            list_get_posts =  response.data;
+            console.log(list_get_posts)
 
         })
     };
 
-    const get_images_async = async () => {
+    const get_posts_async = async () => {
         const response = await axios.get(
-            base_URL + "get_images.php"
+            base_URL + "get_posts.php"
         );
     
-        list_get_images =  response.data;
-        console.log(list_get_images)
+        list_get_posts =  response.data;
+        console.log(list_get_posts)
     };
 
 
-    await get_images();
+    await get_posts();
     
     //we need user_id so we can post their name
-    //get_images --> return image URL + image id
+    //get_posts --> return image URL + image id
     //get_likes (after retrieving the image_id)
-    console.log(list_get_images)
+    console.log(list_get_posts)
 
-    console.log(list_get_images["4"]["Image_URL"])
+    console.log(list_get_posts["4"]["Image_URL"])
 
     const posts = document.getElementById('elements');
     const append = '<div id="elements">'+
     '<div class="grid-item">'+
         '<div class="card">'+
-            '<img class="card-img" src="'+ list_get_images["4"]["Image_URL"] +'" />'+
+            '<img class="card-img" src="'+ list_get_posts["4"]["Image_URL"] +'" />'+
             '<div class="card-content">'+
                 '<h1 class="card-header">Orange </h1>'+
                 '<button id="btn_comment" class="card-btn comment">Comments <button id="btn_like"'+
