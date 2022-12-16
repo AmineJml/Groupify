@@ -17,7 +17,7 @@ workshop_pages.load_login = () => {
     const login = async () => {//login post user name and password returns all info needed about the username 
         let list_login = {};
         var bodyFormData = new FormData();
-        bodyFormData.append('username', input_username.value);
+        bodyFormData.append('email', input_username.value);
         bodyFormData.append('password', input_pass.value);
         await axios({
             method: "post",
@@ -29,17 +29,14 @@ workshop_pages.load_login = () => {
         .then(function(response){
             const test = response;
              list_login = response.data;
-             console.log(test)
+             token = list_login.authorisation.token;
         })
         .catch(function(error) {
             console.log(error);
         });     
         if(list_login["success"] == "true"){
             //adding values to local stoarge
-            localStorage.setItem("FName", list_login["0"]["FName"]);
-            localStorage.setItem("LName", list_login["0"]["LName"]);
-            localStorage.setItem("Username", list_login["0"]["Username"]);
-            localStorage.setItem("User_id", list_login["0"]["User_id"]);
+            localStorage.setItem("token", token);
             //moving to homepage
             location.replace(base_HTML+"homePage.html");
         }
