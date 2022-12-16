@@ -1,5 +1,5 @@
 const base_URL = "http://localhost/FullStackProject-Web/Back%20End/";
-const base_HTML = "http://localhost/FullStackProject-Web/Front%20End/";
+const base_HTML = "http://localhost:5501/Front-end/";
 
 const workshop_pages = {};
  
@@ -22,24 +22,23 @@ workshop_pages.load_login = () => {
         await axios({
             method: "post",
             //url: "http://localhost/FullStackProject-Web/Back%20End/login.php",
-            url:"http://127.0.0.1:8000/api/login",
+            url:"http://localhost:8000/api/login",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
           })
         .then(function(response){
             const test = response;
              list_login = response.data;
-             console.log(test)
+             console.log(list_login)
         })
         .catch(function(error) {
             console.log(error);
         });     
-        if(list_login["success"] == "true"){
+        if(list_login.status == "success"){
             //adding values to local stoarge
-            localStorage.setItem("FName", list_login["0"]["FName"]);
-            localStorage.setItem("LName", list_login["0"]["LName"]);
-            localStorage.setItem("Username", list_login["0"]["Username"]);
-            localStorage.setItem("User_id", list_login["0"]["User_id"]);
+            localStorage.setItem("token", list_login.authorisation.token);
+            console.log(localStorage.getItem('token'))
+
             //moving to homepage
             location.replace(base_HTML+"homePage.html");
         }
