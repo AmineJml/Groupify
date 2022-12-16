@@ -47,6 +47,7 @@ groupify_pages.load_login = () => {
     };  
     btn_login.addEventListener('click', login);
 }
+
 groupify_pages.load_editProfile = () => {
     const btn_editProfile = document.getElementById('btn_editProfile');
 
@@ -101,6 +102,7 @@ groupify_pages.load_editProfile = () => {
     btn_editProfile.addEventListener('click', editProfile);
 
 }
+
 groupify_pages.load_post = () => {
     const btn_addImage = document.getElementById('btn_addImage');
     const input_addImage_URL = document.getElementById('input_addImage_URL');
@@ -137,7 +139,6 @@ groupify_pages.load_post = () => {
 btn_addImage.addEventListener('click', postImage);
 
 }
-
 
 groupify_pages.load_homePage = async () => {
     class images {
@@ -209,7 +210,6 @@ groupify_pages.load_homePage = async () => {
     const list2 = [append + append2]
     posts.innerHTML = list2;
 }
-
 
 groupify_pages.load_register = () => {
     const btn_signup = document.getElementById('btn_signup');
