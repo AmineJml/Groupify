@@ -75,7 +75,8 @@ workshop_pages.load_login = () => {
         bodyFormData.append('password', input_pass.value);
         await axios({
             method: "post",
-            url: "http://localhost/FullStackProject-Web/Back%20End/login.php",
+            //url: "http://localhost/FullStackProject-Web/Back%20End/login.php",
+            url:"http://localhost:8000/api/login",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
           })
@@ -94,7 +95,7 @@ workshop_pages.load_login = () => {
             localStorage.setItem("Username", list_login["0"]["Username"]);
             localStorage.setItem("User_id", list_login["0"]["User_id"]);
             //moving to homepage
-            location.replace(base_HTML+"homePage.html");
+            //location.replace(base_HTML+"homePage.html");
         }
         else{
             document.getElementById("check").innerHTML = "Wrong username or password";

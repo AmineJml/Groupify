@@ -92,16 +92,16 @@ Views:
 10- chat room
 
 apis:
-1- login
-2- register
-3- get_all_posts
+1- login - done
+2- register - done
+3- get_all_posts - done	
 4- get_post_group_joined
 5- get_post_user_id ; delete_post_id
-6- edit_profile
-7- add_post
-8- get_post_group
+6- edit_profile - done
+7- add_post - done
+8- get_post_group 
 9- get_post_id
 10- add_like (1 for add, 0 for remove)
-11- add_comment
-12- join_group (1 for add, 0 for remove)
+11- add_comment 
+12- join_group - done (1 for add, 0 for remove)
 
