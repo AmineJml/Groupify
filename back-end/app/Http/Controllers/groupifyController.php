@@ -172,6 +172,7 @@ class groupifyController extends Controller
     7- add_post 0 variables - Completed with testing
     11- add_comment 0 variables - Completed with testing
     */
+//===============================PostsController===================================================================
 
     function add_post(Request $request)
     {
@@ -201,7 +202,8 @@ class groupifyController extends Controller
             ]);
         } 
     }
-    
+    //===============================commentsController===================================================================
+
     function add_comment(Request $request){
         $comment = new Comment;
         $comment->post_id = $request->post_id;
@@ -226,6 +228,7 @@ class groupifyController extends Controller
             ]);
         }    
     }
+//===============================usersController===================================================================
 
     function edit_profile(Request $request)
     {
@@ -253,6 +256,7 @@ class groupifyController extends Controller
             "result" => "true" 
         ]);    
     }
+//===============================likesController===================================================================
 
     function like_post(Request $request){
         $like = new Like;

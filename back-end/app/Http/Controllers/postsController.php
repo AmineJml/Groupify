@@ -37,4 +37,33 @@ class postsController extends Controller
             "result" => $post
         ]);
     }
+
+    function add_post(Request $request)
+    {
+        $post = new Post;
+        $post->group_id = $request->group_id;
+        $post->user_id = $request->user_id;
+        $post->post_title = $request->post_title;
+        $post->post_description = $request->post_description;
+        $post->post_URL = $request->post_URL;
+
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+            'user_id' => 'required',
+            'post_title' => 'required',
+            'post_description' => 'required',
+            'post_URL' => 'required',
+        ]);
+        //validator infinite loop
+        if($validator->fails()) {
+            return response()->json([
+                "result" => "false" 
+            ]); 
+        }
+        if($post->save()){
+            return response()->json([
+                "result" => "true" 
+            ]);
+        } 
+    }
 }
