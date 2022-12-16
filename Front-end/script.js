@@ -17,7 +17,7 @@ workshop_pages.load_login = () => {
     const login = async () => {//login post user name and password returns all info needed about the username 
         let list_login = {};
         var bodyFormData = new FormData();
-        bodyFormData.append('username', input_username.value);
+        bodyFormData.append('email', input_username.value);
         bodyFormData.append('password', input_pass.value);
         await axios({
             method: "post",
