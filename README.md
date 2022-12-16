@@ -1,6 +1,6 @@
 # Groupify
 
-Project by Abbas Harb
+Project by Amine Jamal
 
 ## Desciption
 Groupify is a web app created to connect students from all majors together, where they can post problems or achievments they got in a school topic and share it with their<br>
