@@ -44,5 +44,20 @@
 
 </body>
 
+<script>
+    let themeLink = document.getElementById("theme-link");
+    let themeSelect = document.getElementById("theme");
+
+    const themeSwitch = () => {
+        if (themeSelect.value === "1") {
+            themeLink.href = "lightMode.css";
+            console.log("AAA");
+        } else if (themeSelect.value === "2") {
+            themeLink.href = "styles.css";
+        }
+    };
+
+    themeSelect.onchange = themeSwitch;
+</script>
 
 </html>
