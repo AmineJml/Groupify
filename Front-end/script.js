@@ -1,15 +1,15 @@
 const base_URL = "http://localhost/FullStackProject-Web/Back%20End/";
 const base_HTML = "http://localhost:5501/Front-end/";
 
-const workshop_pages = {};
+const groupify_pages = {};
  
 
-workshop_pages.loadFor = (page) => {
+groupify_pages.loadFor = (page) => {
     eval("workshop_pages.load_" + page + "();");
 }
 
 
-workshop_pages.load_login = () => {
+groupify_pages.load_login = () => {
     const btn_login = document.getElementById('btn_login');
     let input_username = document.getElementById('input_username');
     let input_pass = document.getElementById('input_pass');
@@ -48,7 +48,7 @@ workshop_pages.load_login = () => {
     };  
     btn_login.addEventListener('click', login);
 }
-workshop_pages.load_editProfile = () => {
+groupify_pages.load_editProfile = () => {
     const btn_editProfile = document.getElementById('btn_editProfile');
 
     let input_FName_edit = document.getElementById('input_FName_edit');
@@ -103,7 +103,7 @@ workshop_pages.load_editProfile = () => {
     btn_editProfile.addEventListener('click', editProfile);
 
 }
-workshop_pages.load_post = () => {
+groupify_pages.load_post = () => {
     const btn_addImage = document.getElementById('btn_addImage');
     const input_addImage_URL = document.getElementById('input_addImage_URL');
     const check_addPost = document.getElementById('check_addPost')
@@ -139,7 +139,7 @@ workshop_pages.load_post = () => {
 btn_addImage.addEventListener('click', postImage);
 
 }
-workshop_pages.load_block = () => {
+groupify_pages.load_block = () => {
     const btn_block = document.getElementById('btn_block');
     const input_username_block = document.getElementById('input_username_block');
     const check_block_list = document.getElementById('check_block_list');
@@ -220,7 +220,7 @@ workshop_pages.load_block = () => {
 }    
 // block.html
 // addPost
-workshop_pages.load_homePage = async () => {
+groupify_pages.load_homePage = async () => {
     class images {
         constructor(User_id, Image_URL, Image_id, likes) {
           this.User_id = User_id;
@@ -292,7 +292,7 @@ workshop_pages.load_homePage = async () => {
 }
 
 
-workshop_pages.load_register = () => {
+groupify_pages.load_register = () => {
     const btn_signup = document.getElementById('btn_signup');
     let input_FName_register = document.getElementById('input_FName_register');
     let input_Username_register = document.getElementById('input_Username_register');
