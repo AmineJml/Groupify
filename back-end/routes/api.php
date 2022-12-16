@@ -60,13 +60,13 @@ Route::group(["middleware" => "auth:api"], function(){
 
 Route::post("editProfile", [groupifyController::class, "edit_profile"]);
 
-Route::post("add_post", [groupifyController::class, "add_post"]);
-Route::post("like_post", [groupifyController::class, "like_post"]);
-Route::post("join_group", [groupifyController::class, "join_group"]);
-Route::post("delete_post", [groupifyController::class, "delete_post"]);
-Route::post("add_comment", [groupifyController::class, "add_comment"]);
+Route::post("add_post", [postsController::class, "add_post"]);
+Route::post("like_post", [likesController::class, "like_post"]);
+Route::post("join_group", [userjpoinedgroupsController::class, "join_group"]);
+Route::post("delete_post", [postsController::class, "delete_post"]);
+Route::post("add_comment", [commentsController::class, "add_comment"]);
 
-Route::get("get_all_posts", [groupifyController::class, "get_all_posts"]);
-Route::get("get_post_group_joined/{user_id}", [groupifyController::class, "get_post_group_joined"]);
-Route::get("get_post_group/{group_id}", [groupifyController::class, "get_post_group"]);
-Route::get("get_post_id/{user_id}", [groupifyController::class, "get_post_id"]);
+Route::get("get_all_posts", [postsController::class, "get_all_posts"]);
+Route::get("get_post_group_joined/{user_id}", [postsController::class, "get_post_group_joined"]);
+Route::get("get_post_group/{group_id}", [postsController::class, "get_post_group"]);
+Route::get("get_post_id/{user_id}", [postsController::class, "get_post_id"]);
