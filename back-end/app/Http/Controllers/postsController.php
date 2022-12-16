@@ -18,7 +18,7 @@ class postsController extends Controller
         ]);
     }
 
-    function get_post_group($group_id){ //takes nothing return all informations about a post may be displayed to all users (even guests)
+    function get_post_group($group_id){ //takes group_id return all informations about a post may be displayed to the group (even guests)
         $post = Post::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
                           ->where('is_deleted', '=', 0)
                           ->where('group_id', '=', $group_id)
@@ -28,7 +28,7 @@ class postsController extends Controller
         ]);
     }
 
-    function get_post_id($user_id){ //takes nothing return all informations about a post may be displayed to all users (even guests)
+    function get_post_id($user_id){ //takes user_id return all informations about a post may be displayed to the user only
         $post = Post::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
                           ->where('is_deleted', '=', 0)
                           ->where('user_id', '=', $user_id)

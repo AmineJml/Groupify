@@ -30,4 +30,13 @@ class commentsController extends Controller
             ]);
         }    
     }
+
+    function get_comments($id){
+        $comment = Comment::select('comment')
+                          ->where('post_id', '=', $id)
+                          ->get();
+        return response() -> json([
+            "result" => $comment
+        ]);
+    }
 }

@@ -13,6 +13,33 @@ class AuthController extends Controller
     {
         $this->middleware('auth:api', ['except' => ['login','register']]);
     }
+    public function editProfile(Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json([
+                "status" => "failed",
+                "message" => "You are not Logged in",
+            ] , 401);
+
+        } else if (Auth::check()) {
+            $validate = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+            ]);
+            if ($validate->fails()) {
+                return response()->json([
+                    "status"=> "failed",
+                    "message" => "Bad input",
+                ], 400);
+            }
+            $user = Auth::user();
+            $user->name = $request->name;
+            if ($user->save()) {
+                return response()->json([
+                    "status" => "success",
+                ]);
+            }
+        }
+    }
 
     public function login(Request $request)
     {
@@ -62,7 +89,8 @@ class AuthController extends Controller
 
         ]);
     }
-//
+    
+    
 public function editProfile(Request $request){
     $request->validate([
         'name' => 'required|string|max:255',
