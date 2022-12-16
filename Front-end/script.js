@@ -21,7 +21,6 @@ groupify_pages.load_login = () => {
         bodyFormData.append('password', input_pass.value);
         await axios({
             method: "post",
-            //url: "http://localhost/FullStackProject-Web/Back%20End/login.php",
             url:base_URL +"login",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
