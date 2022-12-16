@@ -55,18 +55,38 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
+            'user' => $user
+
         ]);
     }
+//
+public function editProfile(Request $request){
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6',
+    ]);
 
+    $user = User::up([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'User created successfully',
+        'user' => $user,
+        'authorisation' => [
+            'token' => $token,
+            'type' => 'bearer',
+        ]
+    ]);
+}
+//
     public function logout()
     {
         Auth::logout();

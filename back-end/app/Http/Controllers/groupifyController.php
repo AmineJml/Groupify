@@ -95,6 +95,7 @@ class groupifyController extends Controller
         $post = Post::select('group_id', 'user_id', 'post_title', 'post_description', 'post_URL')
                           ->where('is_deleted', '=', 0)
                           ->get();
+
         return response() -> json([
             "result" => $post
         ]);
@@ -273,8 +274,8 @@ class groupifyController extends Controller
                     ->get();
         if($check_like){
             $like = Like::where('post_id',  $like->post_id)
-            ->where('user_id', $like->user_id)
-            ->update(['is_liked'=> $like->is_liked]);
+                         ->where('user_id', $like->user_id)
+                         ->update(['is_liked'=> $like->is_liked]);
             return response()->json([
                 "result" => "like_is_found" 
             ]);    
