@@ -74,7 +74,7 @@ groupify_pages.load_editProfile = () => {
         }
         else{
             var bodyFormData = new FormData();
-            bodyFormData.append('User_id', localStorage.getItem("User_id"));
+            bodyFormData.append('user_id', localStorage.getItem("User_id"));
             bodyFormData.append('email', input_FName_edit.value);
             bodyFormData.append('username', input_Username_edit.value);
             bodyFormData.append('password', input_PasswordNew_edit.value);
