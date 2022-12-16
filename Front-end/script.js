@@ -8,7 +8,6 @@ groupify_pages.loadFor = (page) => {
     eval("workshop_pages.load_" + page + "();");
 }
 
-
 groupify_pages.load_login = () => {
     const btn_login = document.getElementById('btn_login');
     let input_username = document.getElementById('input_username');
